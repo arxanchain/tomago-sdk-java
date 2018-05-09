@@ -14,11 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 *******************************************************************************/
 
-package com.arxanfintech.sdk;
+package com.arxanfintech.sdk.tomago;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import com.arxanfintech.sdk.tomago.Tomago;
 
 import org.apache.http.Header;
 
