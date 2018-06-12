@@ -71,7 +71,7 @@ import com.alibaba.fastjson.JSONObject;
 String strdata = "{\"payload\": {\"chaincode_id\": \"mycc\",\"args\": [\"invoke\", \"a\", \"b\", \"1\"]} }";
 JSONObject jsondata = JSON.parseObject(strdata);
 
-String strheader = "{\"Callback-Url\":\"http://something.com\",\"Bc-Invoke-Mode\":\"sync\"}";
+String strheader = "{\"Callback-Url\":\"http://something.com\"}";
 JSONObject jsonheader = JSON.parseObject(strheader);
 
 Client client = new Client();
@@ -93,7 +93,7 @@ import com.alibaba.fastjson.JSONObject;
 String strdata = "{\"payload\": {\"chaincode_id\": \"mycc\",\"args\":[\"query\", \"a\"]} }";
 JSONObject jsondata = JSON.parseObject(strdata);
 
-String strheader = "{\"Callback-Url\":\"http://something.com\",\"Bc-Invoke-Mode\":\"sync\"}";
+String strheader = "{\"Callback-Url\":\"http://something.com\"}";
 JSONObject jsonheader = JSON.parseObject(strheader);
 
 Client client = new Client();
@@ -126,4 +126,54 @@ Tomago tomago = new Tomago(client);
         
 String response = tomago.Transaction(jsonheader, id);
 
+```
+
+## Using callback URL to receive blockchain transaction events
+
+Tomago is asynchronous, it will return without waiting for
+blockchain transaction confirmation. In asynchronous mode, you should set
+`Callback-Url` in the http header to receive blockchain transaction events.
+
+The blockchain transaction event structure is defined as follows:
+
+```code
+import google_protobuf "github.com/golang/protobuf/ptypes/timestamp
+
+// Blockchain transaction event payload
+type BcTxEventPayload struct {
+    BlockNumber   uint64                     `json:"block_number"`   // Block number
+    BlockHash     []byte                     `json:"block_hash"`     // Block hash
+    ChannelId     string                     `json:"channel_id"`     // Channel ID
+    ChaincodeId   string                     `json:"chaincode_id"`   // Chaincode ID
+    TransactionId string                     `json:"transaction_id"` // Transaction ID
+    Timestamp     *google_protobuf.Timestamp `json:"timestamp"`      // Transaction timestamp
+    IsInvalid     bool                       `json:"is_invalid"`     // Is transaction invalid
+    Payload       interface{}                `json:"payload"`        // Transaction Payload
+}
+```
+
+One blockchain transaction event sample as follows:
+
+```code
+{
+    "block_number":63,
+    "block_hash":"vTRmfHZ3aaecbbw2A5zPcuzekUC42Lid3w+i6dOU5C0=",
+    "channel_id":"pubchain",
+    "chaincode_id":"pubchain-c4:",
+    "transaction_id":"243eaa6e695cc4ce736e765395a64b8b917ff13a6c6500a11558b5e94e02556a",
+    "timestamp":{
+        "seconds":1521189855,
+        "nanos":192203115
+    },
+    "is_invalid":false,
+    "payload":{
+        "id":"did:axn:4debe20b-ca00-49b0-9130-026a1aefcf2d",
+        "metadata":{
+            "member_id_value":"3714811988020512",
+            "member_mobile":"6666",
+            "member_name":"8777896121269017",
+            "member_truename":"Tony"
+        }
+    }
+}
 ```

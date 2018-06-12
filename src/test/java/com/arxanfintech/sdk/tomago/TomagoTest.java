@@ -61,7 +61,7 @@ public class TomagoTest extends TestCase {
         String strdata = "{\"payload\": {\"chaincode_id\": \"mycc\",\"args\": [\"invoke\", \"a\", \"b\", \"1\"]} }";
         JSONObject jsondata = JSON.parseObject(strdata);
 
-        String strheader = "{\"Callback-Url\":\"http://something.com\",\"Bc-Invoke-Mode\":\"sync\"}";
+        String strheader = "{\"Callback-Url\":\"http://something.com\"}";
         JSONObject jsonheader = JSON.parseObject(strheader);
 
         Client client = new Client();
@@ -87,7 +87,7 @@ public class TomagoTest extends TestCase {
         String strdata = "{\"payload\": {\"chaincode_id\": \"mycc\",\"args\":[\"query\", \"a\"]} }";
         JSONObject jsondata = JSON.parseObject(strdata);
 
-        String strheader = "{\"Callback-Url\":\"http://something.com\",\"Bc-Invoke-Mode\":\"sync\"}";
+        String strheader = "{\"Callback-Url\":\"http://something.com\"}";
         JSONObject jsonheader = JSON.parseObject(strheader);
 
         Client client = new Client();
