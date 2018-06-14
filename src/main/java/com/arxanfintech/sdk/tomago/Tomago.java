@@ -48,7 +48,7 @@ public class Tomago {
         }
     }
 
-    public void Invoke(JSONObject jsonheader, JSONObject jsonbody) throws Exception {
+    public String Invoke(JSONObject jsonheader, JSONObject jsonbody) throws Exception {
         Request request = new Request();
         request.client = this.client;
         request.body = jsonbody;
@@ -61,12 +61,14 @@ public class Tomago {
             api.NewHttpClient();
             String response = api.DoPost(request);
             System.out.println(response);
+            return response;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "";
         }
     }
 
-    public void Query(JSONObject jsonheader, JSONObject jsonbody) throws Exception {
+    public String Query(JSONObject jsonheader, JSONObject jsonbody) throws Exception {
         Request request = new Request();
         request.client = this.client;
         request.body = jsonbody;
@@ -79,12 +81,14 @@ public class Tomago {
             api.NewHttpClient();
             String response = api.DoPost(request);
             System.out.println(response);
+            return response;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "";
         }
     }
-    
-    public void Transaction(JSONObject jsonheader, String id) throws Exception {
+
+    public String Transaction(JSONObject jsonheader, String id) throws Exception {
         Request request = new Request();
         request.client = this.client;
         request.header = jsonheader;
@@ -96,8 +100,10 @@ public class Tomago {
             api.NewHttpClient();
             String response = api.DoGet(request);
             System.out.println(response);
+            return response;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return "";
         }
     }
 }
