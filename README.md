@@ -90,7 +90,7 @@ import com.arxanfintech.sdk.tomago.Tomago;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
-String strdata = "{\"payload\": {\"chaincode_id\": \"mycc\",\"args\":[\"query\", \"a\"]} }";
+String strdata = "{\"payload\": {\"chaincode_id\": \"pubchain-mycc\",\"args\":[\"query\", \"a\"]} }";
 JSONObject jsondata = JSON.parseObject(strdata);
 
 String strheader = "{\"Callback-Url\":\"http://something.com\", \"Channel-Id\":\"pubchain\"}";
