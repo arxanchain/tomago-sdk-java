@@ -28,7 +28,7 @@ When you use tomago-sdk-java, you should reference project like this:
 <dependency>
     <groupId>com.arxanfintech</groupId>
     <artifactId>tomago-sdk-java</artifactId>
-    <version>1.5.1</version>
+    <version>2.0.1</version>
 </dependency>
 ```
 
@@ -68,16 +68,16 @@ import com.arxanfintech.sdk.tomago.Tomago;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
-String strdata = "{\"payload\": {\"chaincode_id\": \"mycc\",\"args\": [\"invoke\", \"a\", \"b\", \"1\"]} }";
+String strdata = "{\"payload\": {\"chaincode_id\": \"pubchain-mycc\",\"args\": [\"invoke\", \"a\", \"b\", \"1\"]} }";
 JSONObject jsondata = JSON.parseObject(strdata);
 
-String strheader = "{\"Callback-Url\":\"http://something.com\"}";
+String strheader = "{\"Callback-Url\":\"http://something.com\", \"Channel-Id\":\"pubchain\"}";
 JSONObject jsonheader = JSON.parseObject(strheader);
 
-Client client = new Client();
-client.Address = "IP:PORT"; //YOUR SERVER ADDRESS
-client.ApiKey = "5zt592jTM1524126512"; // API-KEY
-client.CertPath = "/Users/yan/tmp/cert136"; //your_cert_dir
+String address = "127.0.0.1:9143"; //YOUR SERVER ADDRESS
+String api_key = "MitFg-7HM1540973852"; // API-KEY
+String cert_path = "/home/arxan/bass/cert/"; //your_cert_dir
+Client client = new Client(api_key, cert_path, "", "", "", "", address, true, "tomago");
 
 Tomago tomago = new Tomago(client);
        
@@ -93,13 +93,13 @@ import com.alibaba.fastjson.JSONObject;
 String strdata = "{\"payload\": {\"chaincode_id\": \"mycc\",\"args\":[\"query\", \"a\"]} }";
 JSONObject jsondata = JSON.parseObject(strdata);
 
-String strheader = "{\"Callback-Url\":\"http://something.com\"}";
+String strheader = "{\"Callback-Url\":\"http://something.com\", \"Channel-Id\":\"pubchain\"}";
 JSONObject jsonheader = JSON.parseObject(strheader);
 
-Client client = new Client();
-client.Address = "IP:PORT";
-client.ApiKey = "5zt592jTM1524126512";
-client.CertPath = "/Users/yan/tmp/cert136";
+String address = "127.0.0.1:9143"; //YOUR SERVER ADDRESS
+String api_key = "MitFg-7HM1540973852"; // API-KEY
+String cert_path = "/home/arxan/bass/cert/"; //your_cert_dir
+Client client = new Client(api_key, cert_path, "", "", "", "", address, true, "tomago");
 
 Tomago tomago = new Tomago(client);
      
@@ -112,15 +112,15 @@ import com.arxanfintech.sdk.tomago.Tomago;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
-String id = "test0";
+String id = "df24213a7ffa19c53f506c3dea8544df750905f5325fac8217496b24c5a880e8"; // TransactionId
 
 String strheader = "{\"Callback-Url\":\"http://something.com\"}";
 JSONObject jsonheader = JSON.parseObject(strheader);
 
-Client client = new Client();
-client.Address = "IP:PORT";
-client.ApiKey = "5zt592jTM1524126512";
-client.CertPath = "/Users/yan/tmp/cert136";
+String address = "127.0.0.1:9143"; //YOUR SERVER ADDRESS
+String api_key = "MitFg-7HM1540973852"; // API-KEY
+String cert_path = "/home/arxan/bass/cert/"; //your_cert_dir
+Client client = new Client(api_key, cert_path, "", "", "", "", address, true, "tomago");
 
 Tomago tomago = new Tomago(client);
         

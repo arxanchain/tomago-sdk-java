@@ -64,10 +64,10 @@ public class TomagoTest extends TestCase {
         String strheader = "{\"Callback-Url\":\"http://something.com\"}";
         JSONObject jsonheader = JSON.parseObject(strheader);
 
-        Client client = new Client();
-        client.Address = "IP:PORT";
-        client.ApiKey = "5zt592jTM1524126512";
-        client.CertPath = "/Users/yan/tmp/cert136";
+        Client client = new Client("", "", "", "", "", "", "");
+//        client.Address = "IP:PORT";
+//        client.ApiKey = "5zt592jTM1524126512";
+//        client.CertPath = "/Users/yan/tmp/cert136";
 
         Tomago tomago = new Tomago(client);
 
@@ -90,10 +90,7 @@ public class TomagoTest extends TestCase {
         String strheader = "{\"Callback-Url\":\"http://something.com\"}";
         JSONObject jsonheader = JSON.parseObject(strheader);
 
-        Client client = new Client();
-        client.Address = "IP:PORT";
-        client.ApiKey = "5zt592jTM1524126512";
-        client.CertPath = "/Users/yan/tmp/cert136";
+    	Client client = new Client("api-key", "/path/to/cert", "","","","", "127.0.0.1:9143", true, "tomago");
 
         Tomago tomago = new Tomago(client);
 
@@ -115,10 +112,7 @@ public class TomagoTest extends TestCase {
         String strheader = "{\"Callback-Url\":\"http://something.com\"}";
         JSONObject jsonheader = JSON.parseObject(strheader);
 
-        Client client = new Client();
-        client.Address = "IP:PORT";
-        client.ApiKey = "5zt592jTM1524126512";
-        client.CertPath = "/Users/yan/tmp/cert136";
+    	Client client = new Client("api-key", "/path/to/cert", "","","","", "127.0.0.1:9143", true, "tomago");
 
         Tomago tomago = new Tomago(client);
 

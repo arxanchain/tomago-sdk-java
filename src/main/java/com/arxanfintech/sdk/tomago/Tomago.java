@@ -18,13 +18,11 @@ package com.arxanfintech.sdk.tomago;
 import java.io.FileInputStream;
 import java.util.List;
 import org.apache.http.NameValuePair;
+//import org.omg.CORBA.Request;
 import org.apache.http.Header;
 
 import com.arxanfintech.common.crypto.Crypto;
 import com.arxanfintech.common.rest.*;
-import com.arxanfintech.common.structs.Headers;
-import com.arxanfintech.common.util.JsonUtil;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 /**
@@ -38,9 +36,8 @@ public class Tomago {
 
     public Tomago(Client client) {
         this.client = client;
-        String privateKeyPath = client.CertPath + "/users/" + client.ApiKey + "/" + client.ApiKey + ".key";
-        String publicCertPath = client.CertPath + "/tls/tls.cert";
-        ;
+        String privateKeyPath = client.GetCertPath() + "/users/" + client.GetApiKey() + "/" + client.GetApiKey() + ".key";
+        String publicCertPath = client.GetCertPath() + "/tls/tls.cert";
         try {
             this.crypto = new Crypto(new FileInputStream(privateKeyPath), new FileInputStream(publicCertPath));
         } catch (Exception e) {
@@ -54,8 +51,9 @@ public class Tomago {
         request.body = jsonbody;
         request.header = jsonheader;
         request.crypto = crypto;
-        request.url = "http://" + request.client.Address + "/tomago/v2/blockchain/invoke";
+        request.url = "http://" + request.client.GetAddress() + "/tomago/v2/blockchain/invoke";
 
+        System.out.println(request.header.toString());
         Api api = new Api();
         try {
             api.NewHttpClient();
@@ -74,7 +72,7 @@ public class Tomago {
         request.body = jsonbody;
         request.header = jsonheader;
         request.crypto = crypto;
-        request.url = "http://" + request.client.Address + "/tomago/v2/blockchain/query";
+        request.url = "http://" + request.client.GetAddress()+ "/tomago/v2/blockchain/query";
 
         Api api = new Api();
         try {
@@ -93,7 +91,7 @@ public class Tomago {
         request.client = this.client;
         request.header = jsonheader;
         request.crypto = crypto;
-        request.url = "http://" + request.client.Address + "/tomago/v2/blockchain/transaction/" + id;
+        request.url = "http://" + request.client.GetAddress() + "/tomago/v2/blockchain/transaction/" + id;
 
         Api api = new Api();
         try {
